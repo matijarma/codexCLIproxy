@@ -1,6 +1,6 @@
-# CodexCLI Proxy: Shield & Adapter
+# Codex CLI Proxy: Shield & Adapter
 
-This project is a simple but powerful Python proxy server designed to sit between a client application (like [CodexCLI](https://github.com/microsoft/Codex-CLI)) and a large language model (LLM) API endpoint.
+This project is a simple but powerful Python proxy server designed to sit between a client application (like [Codex CLI](https://github.com/microsoft/Codex-CLI)) and a large language model (LLM) API endpoint.
 
 Its primary purpose is to act as a **"shield"** against aggressive rate-limiting and transient API errors, and as an **"adapter"** to allow clients to connect to otherwise incompatible OpenAI-compatible APIs.
 
@@ -15,7 +15,7 @@ Its primary purpose is to act as a **"shield"** against aggressive rate-limiting
 
 ## How It Works
 
-1.  **Client Request**: Your client application (e.g., CodexCLI) is configured to send its requests to this proxy server instead of directly to the LLM API.
+1.  **Client Request**: Your client application (e.g., Codex CLI) is configured to send its requests to this proxy server instead of directly to the LLM API.
 2.  **Proxy Receives**: The proxy server, running locally, receives the JSON request from the client.
 3.  **Proxy Modifies**: It modifies the request payload, forcing streaming (`stream: true`) and optionally overriding the model name (`model: "your-forced-model"`).
 4.  **Proxy Forwards**: The proxy sends the modified payload to the target API endpoint (e.g., Azure OpenAI) defined in its `.env` file.
@@ -77,7 +77,7 @@ You should see a confirmation that the server is running:
 
 ```
 ------------------------------
-  CodexCLI PROXY: Buffering & Shielding Proxy
+  Codex CLI PROXY: Buffering & Shielding Proxy
   Listening on: 127.0.0.1:8888
   Target endpoint: https://your-endpoint.com/openai/...
   Forcing model: your-forced-model
@@ -88,7 +88,7 @@ Keep this terminal window open. The proxy must be running for your client applic
 
 ### 5. Configuring Your Client
 
-Now, configure your client application to point to the proxy. The `config_template.toml` file shows an example configuration for a tool like CodexCLI.
+Now, configure your client application to point to the proxy. The `config_template.toml` file shows an example configuration for a tool like Codex CLI.
 
 The key settings are:
 
