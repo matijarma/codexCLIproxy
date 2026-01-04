@@ -1,0 +1,52 @@
+# This is a template configuration file for a client (like CodexCLI)
+# to connect to the Python proxy.
+
+# --- Client Model Configuration ---
+# These settings tell the client application which model provider and model to use.
+
+# 'model_provider' should match the name of the provider defined below
+# (e.g., "my-proxy").
+model_provider = "my-proxy"
+
+# 'model' is the name of the model you want to use.
+# If the proxy has FORCED_MODEL set, the proxy will override this value.
+# Otherwise, the proxy will request this model from the target endpoint.
+model = "your-target-model"
+
+# --- Client Behavior ---
+# These settings control timeouts for the client application's requests.
+# It's a good idea to set them to high values because the proxy itself
+# might be waiting a long time for the target API to respond.
+request_timeout_ms = 600000
+stream_idle_timeout_ms = 600000
+connect_timeout_ms = 60000
+
+# --- Model Provider Definition ---
+# This section defines the connection details for the proxy.
+
+# The name "my-proxy" must match the 'model_provider' value above.
+[model_providers.my-proxy]
+# A user-friendly name for the provider.
+name = "Local Python Proxy"
+
+# The URL where the proxy server is running.
+# This should match the host and PORT set in the proxy's .env file.
+# The default is http://127.0.0.1:8888.
+base_url = "http://127.0.0.1:8888"
+
+# The proxy uses the 'responses' API format, which is standard for
+# streaming chat completions.
+wire_api = "responses"
+
+# The proxy gets its API key from its own .env file on the server-side,
+# so the client does not need to send one. You can use a dummy value here.
+env_key = "DUMMY_KEY"
+
+
+# --- Client Context ---
+# These settings control the context window size for the client.
+# They are not directly related to the proxy but are important for the
+# client's operation.
+[context]
+max_tokens = 60000
+keep_tokens = 25000
